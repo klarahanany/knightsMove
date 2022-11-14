@@ -34,11 +34,6 @@ public class Game {
 	public void updatePoints() {
 		
 	}
-
-	
-	
-	
-	
 	public void popQuestion() {
 		
 	}
