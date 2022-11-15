@@ -1,6 +1,11 @@
 package Model;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class SysData {
 	private HashMap<Integer, Game> games;
@@ -18,9 +23,30 @@ public class SysData {
 	public void	loadQuestions(){
 		
 	}
-	public void	writeQuestions()  {
+	public void	writeQuestions(Question ques)  {
+		JSONObject questionDetails = new JSONObject();
+		  
+	        questionDetails.put("question", ques.getContext());
+	        questionDetails.put("answers", ques.getAnswers());
+	        questionDetails.put("correct_ans", ques.getCorrectAnswer());
+	        questionDetails.put("level", ques.getCorrectAnswer());
+	        questionDetails.put("team", ques.getTeam());
+	        
+	        JSONObject questionObject = new JSONObject(); 
+	        questionObject.put("question", questionDetails);
+	     
+	        //Write JSON file
+	        try (FileWriter file = new FileWriter("QuestionsAndAnswers.json")) {
+	            //We can write any JSONArray or JSONObject instance to the file
+	            file.write(questionObject.toString()); 
+	            file.flush();
+	 
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	   }
 		
-	}
+	
 	public void	updateQuesthion() {
 		
 	}
